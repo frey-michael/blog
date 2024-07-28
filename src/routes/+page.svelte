@@ -1,3 +1,7 @@
+<script>
+	import {assets} from "$app/paths";
+
+</script>
 <h1>Blog</h1>
 <a href="about">About Page</a>
 
@@ -9,6 +13,8 @@
 	<div class="tile">E</div>
 	<div class="tile">F</div>
 </div>
+
+<a href="https://www.github.com/Kesseline"><img src="src/assets/github_logo.png" alt="Github Logo"></a>
 
 <style>
 	.tile-grid {
