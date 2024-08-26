@@ -1,12 +1,14 @@
 <script lang="ts">
 	import type { LayoutData } from './$types';
+	import { page } from '$app/stores';
+	import { type Post } from '$lib/post';
 
 	export let data: LayoutData;
+	$: post = data.post;
 	let searchval = '';
-	$: filtered = data.posts.filter((p) => p.content.includes(searchval));
 </script>
 
-<h1>Blog</h1>
+<h1>Blog {$page.params.postNumber}</h1>
 <a href="about">About Page</a>
 
 <label for="searchInput">Search</label>
@@ -16,14 +18,10 @@
 >
 
 <div class="tile-grid">
-	{#each filtered as item}
-		<div class="tile">
-			{item.title}
-			<div class="summary">
-				{item.summary}
-			</div>
-		</div>
-	{/each}
+	<div class="tile">
+		{post?.content}
+		<div class="summary"></div>
+	</div>
 </div>
 
 <style>
