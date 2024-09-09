@@ -1,28 +1,20 @@
 <script lang="ts">
 	import type { LayoutData } from './$types';
+	import Header from '$lib/Header.svelte';
 
 	export let data: LayoutData;
-	let searchval = '';
-	$: filtered = data.posts.filter((p) => p.content.includes(searchval));
 </script>
 
-<h1>Blog</h1>
-<a href="about">About Page</a>
-
-<label for="searchInput">Search</label>
-<input bind:value={searchval} type="text" id="searchInput" />
-<a href="https://www.github.com/Kesseline"
-	><img src="github_logo.png" alt="Github Logo" class="links" /></a
->
+<Header />
 
 <div class="tile-grid">
-	{#each filtered as item}
-		<div class="tile">
+	{#each data.posts as item, i}
+		<a class="tile" href="posts/{i}">
 			{item.title}
 			<div class="summary">
 				{item.summary}
 			</div>
-		</div>
+		</a>
 	{/each}
 </div>
 
@@ -48,18 +40,12 @@
 		background-color: #8a5829;
 		border: 2px solid black;
 		min-height: 200px;
+		text-decoration: none;
 	}
 
 	.summary {
 		margin-top: 50px;
 		margin-bottom: 15px;
 		font-size: medium;
-	}
-
-	.links {
-		max-height: 50px;
-		position: fixed;
-		right: 100px;
-		top: 20px;
 	}
 </style>
