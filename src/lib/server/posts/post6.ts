@@ -1,8 +1,8 @@
 import type {Post} from '../../post';
 
 export const post6: Post = {
-  title: "Neque porro quisquam est qui dolorem",
-  summary: "Mauris tempus mauris at felis bibendum luctus. Nullam purus lacus, porttitor et magna in, luctus scelerisque nibh. Sed convallis non orci ut viverra. Vivamus vel tristique mauris. Vestibulum facilisis tortor est, at dignissim leo eleifend quis.",
+  title: "The Ethical Dilemma of AI: Can We Trust Machines?",
+  summary: "As AI systems become more autonomous, ethical concerns arise around bias, accountability, and decision-making. This article discusses the ethical challenges of AI and the steps being taken to create responsible and fair algorithms.",
   content:
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu urna vestibulum, interdum lacus sed, pharetra tellus. Integer fringilla dui commodo elit aliquet egestas. Vestibulum dapibus volutpat euismod. Donec volutpat posuere ipsum, at lacinia odio aliquam vitae. Vivamus eleifend sem ipsum. Quisque et lorem rutrum ante sodales accumsan. Phasellus efficitur eleifend consectetur. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent finibus, tortor quis venenatis volutpat, magna tortor fermentum dolor, et lacinia velit erat dignissim tellus. Integer nec neque metus.
 

@@ -3,7 +3,9 @@
 
 <h1><a class="main" href="/">memory dump</a></h1>
 
-<a href="https://www.github.com/Kesseline"><img src="" alt="Github Logo" class="links" /></a>
+<a href="https://www.github.com/Kesseline"
+	><img src="/github_logo.png" alt="Github Logo" class="links" /></a
+>
 
 <style>
 	.links {
