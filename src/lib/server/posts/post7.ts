@@ -1,6 +1,7 @@
 import type {Post} from '../../post';
 
 export const post7: Post = {
+  id: "79368546-fc53-47d4-bee0-a5940e54ac2e",
   title: "Cybersecurity in the Age of Remote Work: Emerging Threats and Solutions",
   summary: "The rise of remote work has opened new vulnerabilities in corporate networks. Explore how cybersecurity strategies are evolving to combat phishing attacks, ransomware, and insider threats in a distributed workforce.",
   content:

@@ -1,6 +1,7 @@
 import type {Post} from '../../post';
 
 export const post6: Post = {
+  id: "cb8d7613-567a-47d0-837c-849acd39d0c0",
   title: "The Ethical Dilemma of AI: Can We Trust Machines?",
   summary: "As AI systems become more autonomous, ethical concerns arise around bias, accountability, and decision-making. This article discusses the ethical challenges of AI and the steps being taken to create responsible and fair algorithms.",
   content:

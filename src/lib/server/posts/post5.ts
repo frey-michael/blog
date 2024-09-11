@@ -1,6 +1,7 @@
 import type {Post} from '../../post';
 
 export const post5: Post = {
+  id: "6348526a-4b42-4199-b7fd-76dda93b0e00",
   title: "Blockchain Beyond Bitcoin: How Distributed Ledgers Are Revolutionizing Industries",
   summary: "Blockchain technology is expanding beyond cryptocurrency into sectors like supply chain, finance, and voting systems. This piece explores real-world applications of blockchain and how it ensures transparency and security in data management.",
   content:
