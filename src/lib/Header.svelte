@@ -16,6 +16,7 @@
 	}
 
 	.main {
+		margin: 20px;
 		text-decoration: none;
 		color: black;
 	}

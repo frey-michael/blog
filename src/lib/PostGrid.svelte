@@ -14,7 +14,8 @@
 <style>
 	.post-grid {
 		display: grid;
-		grid-gap: 25px;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		grid-gap: 50px;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		margin: 50px 50px;
 	}
 </style>

@@ -3,7 +3,9 @@
 </script>
 
 <a class="tile" href="posts/{post.id}">
-	{post.title}
+	<div class="title">
+		{post.title}
+	</div>
 	<div class="summary">
 		{post.summary}
 	</div>
@@ -12,20 +14,24 @@
 <style>
 	.tile {
 		color: black;
-		font-size: larger;
 		border-radius: 25px;
 		text-align: center;
 		padding-top: 20px;
-		margin-top: 50px;
-		background-color: #8a5829;
+		background-color: #f5f4f0;
 		border: 2px solid black;
-		min-height: 200px;
+		height: fit-content;
 		text-decoration: none;
 	}
 
+	.title {
+		font-size: larger;
+		font-weight: bold;
+		margin: 0 10px;
+	}
+
 	.summary {
-		margin-top: 50px;
-		margin-bottom: 15px;
+		bottom: 10px;
+		margin: 20px 10px;
 		font-size: medium;
 	}
 </style>
