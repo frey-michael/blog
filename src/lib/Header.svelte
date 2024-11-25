@@ -1,23 +1,24 @@
 <script>
 </script>
 
-<h1><a class="main" href="/">memory dump</a></h1>
+<div>
+	<a href="/"><img class="main" src="/md-logo.png" alt="Memory Dump Logo" /></a>
 
-<a href="https://www.github.com/Kesseline"
-	><img src="/github_logo.png" alt="Github Logo" class="links" /></a
->
+	<a href="https://www.github.com/Kesseline"
+		><img src="/github_logo.png" alt="Github Logo" class="links" /></a
+	>
+</div>
 
 <style>
 	.links {
-		max-height: 50px;
+		max-height: 60px;
 		position: fixed;
 		right: 100px;
-		top: 20px;
+		top: 40px;
 	}
 
 	.main {
-		margin: 20px;
-		text-decoration: none;
-		color: black;
+		margin: 20px 50px 0 50px;
+		max-height: 80px;
 	}
 </style>
