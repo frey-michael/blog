@@ -2,6 +2,7 @@ import type {Post} from '../../post';
 
 export const post8: Post = {
   id: "45adb546-28ce-4199-b184-e865313b24e4",
+  date: new Date(2024, 11, 26),
   title: "Augmented Reality: Transforming Retail, Gaming, and Education",
   summary: "Augmented reality (AR) is making waves in industries from e-commerce to entertainment. Discover how AR is being used to enhance user experiences, from virtual try-ons in retail to immersive learning environments in education.",
   content:

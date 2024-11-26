@@ -2,6 +2,7 @@ import type {Post} from '../../post';
 
 export const post2: Post = {
   id: "da8459c7-97c6-4233-a115-f2b159d32040",
+  date: new Date(2024, 11, 26),
   title: "5G Networks: Unlocking the Next Generation of Connectivity",
   summary: "As 5G rolls out across the globe, its ultra-fast, low-latency network is set to transform industries like IoT, autonomous vehicles, and smart cities. We dive into how 5G will reshape communications and what consumers can expect.",
   content:

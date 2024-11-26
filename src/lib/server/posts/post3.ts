@@ -2,6 +2,7 @@ import type {Post} from '../../post';
 
 export const post3: Post = {
   id: "a1b2e827-b043-43ad-a593-b244eefcfa84",
+  date: new Date(2024, 11, 26),
   title: "Artificial Intelligence in Healthcare: The Future of Diagnosis and Treatment",
   summary: "AI is transforming healthcare by providing more accurate diagnostics, personalized treatments, and robotic surgeries. This article highlights recent advancements in AI-driven healthcare and how they're improving patient outcomes.",
   content:

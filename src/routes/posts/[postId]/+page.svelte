@@ -9,6 +9,7 @@
 <Header />
 
 <div class="post">
+	<div class="post-date">{post?.date.toLocaleDateString()}</div>
 	<h1 class="title">{post?.title}</h1>
 	<div class="content">
 		{post?.content}
@@ -29,7 +30,13 @@
 
 	.title {
 		text-align: center;
-		margin: 0 10px;
+		margin: 0 50px;
+	}
+
+	.post-date {
+		text-align: left;
+		margin: 5px 50px;
+		font-size: medium;
 	}
 
 	.content {

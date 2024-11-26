@@ -2,6 +2,7 @@ import type {Post} from '../../post';
 
 export const post1: Post = {
   id: "c1848486-fa03-4ef3-8510-2aecdf1d1d53",
+  date: new Date(2024, 11, 26),
   title: "The Rise of Quantum Computing: Shaping the Future of Technology",
   summary: "Quantum computing is poised to revolutionize industries from cryptography to drug discovery. This article explores the current state of quantum research, the challenges it faces, and the potential impact it could have on solving previously unsolvable problems.",
   content:

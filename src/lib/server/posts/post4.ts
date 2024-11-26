@@ -2,6 +2,7 @@ import type {Post} from '../../post';
 
 export const post4: Post = {
   id: "05a26118-c9af-418c-8256-94f08fe6fce1",
+  date: new Date(2024, 11, 26),
   title: "Edge Computing: The Next Evolution in Data Processing",
   summary: "As data volumes explode, edge computing brings processing power closer to the source, reducing latency and bandwidth issues. Learn how industries like manufacturing, gaming, and autonomous vehicles are leveraging this trend.",
   content:

@@ -2,6 +2,7 @@ import type {Post} from '../../post';
 
 export const post9: Post = {
   id: "346d7338-1cbb-4996-a803-0d00c34068e3",
+  date: new Date(2024, 11, 26),
   title: "The Role of AI in Climate Change: Can Technology Save the Planet?",
   summary: "AI is increasingly being used to tackle environmental challenges, from optimizing energy consumption to predicting natural disasters. This article explores the role AI could play in mitigating climate change and promoting sustainability.",
   content:
