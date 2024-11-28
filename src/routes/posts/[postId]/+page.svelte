@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { LayoutData } from './$types';
 	import Header from '../../../lib/Header.svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let data: LayoutData;
 	$: post = data.post;
+	$: source = post?.content;
 </script>
 
 <Header />
@@ -12,7 +14,7 @@
 	<div class="post-date">{post?.date.toLocaleDateString()}</div>
 	<h1 class="title">{post?.title}</h1>
 	<div class="content">
-		{post?.content}
+		<SvelteMarkdown {source} />
 	</div>
 </div>
 
