@@ -11,14 +11,15 @@
 
 <style>
 	.links {
-		max-height: 60px;
+		max-height: 50px;
 		position: fixed;
-		right: 100px;
+		right: 50px;
 		top: 40px;
 	}
 
 	.main {
 		margin: 20px 50px 0 50px;
 		max-height: 80px;
+		max-width: 50%;
 	}
 </style>
