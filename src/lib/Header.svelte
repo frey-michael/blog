@@ -4,7 +4,7 @@
 <div>
 	<a href="/"><img class="main" src="/md-logo.png" alt="Memory Dump Logo" /></a>
 
-	<a href="https://www.github.com/Kesseline"
+	<a href="https://www.github.com/frey-michael"
 		><img src="/github_logo.png" alt="Github Logo" class="links" /></a
 	>
 </div>
