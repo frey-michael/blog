@@ -2,12 +2,12 @@
 	export let post;
 </script>
 
-<a class="tile" href="posts/{post.id}">
+<a class="tile" href="posts/{post.meta.id}">
 	<div class="title">
-		{post.title}
+		{post.meta.title}
 	</div>
 	<div class="summary">
-		{post.summary}
+		{post.meta.summary}
 	</div>
 </a>
 
