@@ -4,16 +4,14 @@
 
 	export let data: LayoutData;
 	$: post = data.post;
-	$: source = post?.text;
-	console.log(post);
 </script>
 
 <Header />
 
 <div class="post">
-	<div class="post-date">{new Date(post?.meta.date).toLocaleDateString()}</div>
-	<h1 class="title">{post?.meta.title}</h1>
-	<div class="content">{@html source.html}</div>
+	<div class="post-date">{new Date(post?.date).toLocaleDateString()}</div>
+	<h1 class="title">{post?.title}</h1>
+	<div class="content">{@html post?.content.html}</div>
 </div>
 
 <style>

@@ -1,21 +1,18 @@
-export const fetchMarkdownPosts = async () => {
-  const allPostFiles = import.meta.glob('/src/lib/server/posts/*.md');
-  const iterablePostFiles = Object.entries(allPostFiles);
+import * as post1 from './post1.md';
 
-  const allPosts = await Promise.all(
-    iterablePostFiles.map(async ([path, resolver]) => {
-      const {metadata} = await resolver();
-      const postPath = path.slice(11, -3);
-      const post = await resolver()
-      const content = post.default.render()
+const allPostFiles = [post1]
 
-      return {
-        meta: metadata,
-        path: postPath,
-        text: content,
-      };
-    })
-  );
+const allPosts =
+  allPostFiles.map(post => {
+    const {id, date, title, summary} = post.metadata;
 
-  return allPosts;
-};
+    return {
+      content: post.default.render(),
+      id: id,
+      date: date,
+      title: title,
+      summary: summary
+    };
+  })
+
+export default allPosts;
