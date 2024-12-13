@@ -1,4 +1,4 @@
-body {
+:global(body) {
   background-color: #b39546;
   font-family: 'Lucida Console', 'Courier New', monospace;
 }
