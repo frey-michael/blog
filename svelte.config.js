@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-cloudflare';
 import {vitePreprocess} from '@sveltejs/vite-plugin-svelte';
 import {mdsvex} from 'mdsvex'
+import rehypeKatexSvelte from 'rehype-katex-svelte';
+import remarkMath from 'remark-math'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,6 +14,8 @@ const config = {
   preprocess: [
     mdsvex({
       extensions: ['.md', '.svx'],
+      remarkPlugins: [remarkMath,],
+      rehypePlugins: [rehypeKatexSvelte],
     }),
     vitePreprocess(),
   ],

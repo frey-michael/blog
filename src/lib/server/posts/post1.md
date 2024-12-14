@@ -8,3 +8,10 @@ summary: 'Welcome to my new tech blog.'
 As of today, memory dump goes live. This site is intended as a blog with short articles mainly about software architecture, software engineering and technology in general.
 
 I am excited to see it grow throughout the coming months and eventually become somewhat of knowledge database. At this point, I also expect some large changes still to come regarding its appearance, navigation, etc. Just bear with me :)
+
+
+The quadratic equation $ax^2+bx+c=0$ has roots
+
+$$
+x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+$$
