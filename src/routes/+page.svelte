@@ -8,10 +8,3 @@
 
 <Header />
 <PostGrid posts={data.posts} />
-
-<style>
-	:global(body) {
-		background-color: #b39546;
-		font-family: 'Lucida Console', 'Courier New', monospace;
-	}
-</style>
