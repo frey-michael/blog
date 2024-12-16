@@ -1,6 +1,7 @@
 import * as post1 from './post1.md';
+import * as post2 from './post2.md';
 
-const allPostFiles = [post1]
+const allPostFiles = [post1, post2]
 
 const allPosts =
   allPostFiles.map(post => {
