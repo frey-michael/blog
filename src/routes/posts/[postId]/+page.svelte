@@ -28,18 +28,18 @@
 
 	.title {
 		text-align: center;
-		margin: 0 50px;
+		margin: 0 max(20px, 5%);
 	}
 
 	.post-date {
 		text-align: left;
-		margin: 5px 50px;
+		margin: 5px max(20px, 5%);
 		font-size: medium;
 	}
 
 	.content {
 		bottom: 10px;
 		font-size: medium;
-		margin: 50px;
+		margin: max(20px, 5%);
 	}
 </style>
