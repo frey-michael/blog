@@ -1,8 +1,7 @@
 <script lang="ts">
-	import type { Post } from './post';
 	import PostTile from './PostTile.svelte';
 
-	export let posts: Array<Post>;
+	export let posts;
 </script>
 
 <div class="post-grid">
@@ -15,7 +14,7 @@
 	.post-grid {
 		display: grid;
 		grid-gap: 50px;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 50%));
+		grid-template-columns: repeat(auto-fit, minmax(300px, 45%));
 		margin: 50px 50px;
 	}
 </style>

@@ -12,7 +12,7 @@
 <style>
 	.links {
 		max-height: 50px;
-		position: fixed;
+		position: absolute;
 		right: 50px;
 		top: 40px;
 	}
