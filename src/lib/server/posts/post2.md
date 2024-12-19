@@ -2,10 +2,10 @@
 id: '28a378a9-dcab-41f1-9325-e4a464552fd2'
 date: 2024-12-16
 title: 'The power of simplification'
-summary: 'When impementing solutions to overwhelming problems, the resulting complexity can often lead to bugs, misunderstandings and hard to maintain code. In such situations, it is crucial to simplify issues as much as possible. Requirements can be questioned, dependencies restructured and sometimes a simply a change of perspective might help.'
+summary: 'When implementing solutions to overwhelming problems, the resulting complexity can often lead to bugs, misunderstandings, and hard-to-maintain code. In such situations, it is crucial to simplify issues as much as possible. Requirements can be questioned, dependencies restructured, and sometimes, simply a change of perspective might help.'
 ---
 
-The starting point for this post is the very first problem on [Project Euler](https://www.projecteuler.net), which I will quote below. Project Euler is a collection of math problems that can be solved programmatically. Quite similar to LeetCode but with less focus on algorithms and data structures. The problem in question looks as follows:
+The starting point for this post is the very first problem on [Project Euler](https://www.projecteuler.net), which I will quote below. Project Euler is a collection of math problems that can be solved programmatically. It's quite similar to LeetCode but with less focus on algorithms and data structures. The problem in question looks as follows:
 
 > *If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.*
 
