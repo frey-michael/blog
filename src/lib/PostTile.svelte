@@ -19,6 +19,9 @@
 		padding-top: 20px;
 		background-color: #f5f4f0;
 		border: 2px solid black;
+		margin: 0 min(25px, 5%) min(25px, 5%);
+		min-width: 200px;
+		max-width: 500px;
 		height: fit-content;
 		text-decoration: none;
 	}

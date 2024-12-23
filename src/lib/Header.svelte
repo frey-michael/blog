@@ -1,25 +1,37 @@
 <script>
 </script>
 
-<div>
-	<a href="/"><img class="main" src="/md-logo.png" alt="Memory Dump Logo" /></a>
+<div class="container">
+	<div class="item">
+		<a href="/"><img class="main" src="/md-logo.png" alt="Memory Dump Logo" /></a>
+	</div>
 
-	<a href="https://www.github.com/frey-michael"
-		><img src="/github_logo.png" alt="Github Logo" class="links" /></a
-	>
+	<div class="item">
+		<a href="https://www.github.com/frey-michael"
+			><img src="/github_logo.png" alt="Github Logo" class="links" /></a
+		>
+	</div>
 </div>
 
 <style>
-	.links {
-		max-height: 50px;
-		position: absolute;
-		right: 50px;
-		top: 40px;
+	.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: max(25px, 2%) 5%;
+	}
+
+	.item {
+		width: min(max(160px, 30%), 270px);
 	}
 
 	.main {
-		margin: 20px 50px 0 50px;
-		max-height: 80px;
-		max-width: 50%;
+		max-width: 100%;
+	}
+
+	.links {
+		max-width: 25%;
+		float: right;
+		margin-right: 10px;
 	}
 </style>
