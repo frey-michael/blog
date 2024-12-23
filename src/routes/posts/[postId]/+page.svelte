@@ -23,12 +23,13 @@
 		border: 2px solid black;
 		height: fit-content;
 		text-decoration: none;
-		margin: 50px 30px;
+		margin: 0 5% 3%;
 	}
 
 	.title {
 		text-align: center;
 		margin: 0 max(20px, 5%);
+		hyphens: auto;
 	}
 
 	.post-date {
@@ -40,6 +41,7 @@
 	.content {
 		bottom: 10px;
 		font-size: medium;
-		margin: max(20px, 5%);
+		hyphens: auto;
+		margin: min(max(20px, 3%), 40px);
 	}
 </style>
