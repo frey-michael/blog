@@ -12,6 +12,4 @@ npm run dev
 
 ## Deplyment
 
-Continuous deployment is enabled using the [adapter-cloudflare](https://svelte.dev/docs/kit/adapter-cloudflare) library. Every successful pull request to main automatically triggers a deployment. 
-
-blub
+Continuous deployment is enabled using the [adapter-cloudflare](https://svelte.dev/docs/kit/adapter-cloudflare) library. Every successful pull request to main automatically triggers a deployment.
