@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let post;
+	let { post } = $props();
 </script>
 
 <a class="tile" href="posts/{post.id}">

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PostTile from './PostTile.svelte';
 
-	export let posts;
+	let { posts } = $props();
 </script>
 
 <div class="post-grid">

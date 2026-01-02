@@ -2,8 +2,12 @@
 	import type { LayoutData } from './$types';
 	import Header from '../../../lib/Header.svelte';
 
-	export let data: LayoutData;
-	$: post = data.post;
+	interface Props {
+		data: LayoutData;
+	}
+
+	let { data }: Props = $props();
+	let post = $derived(data.post);
 </script>
 
 <Header />
@@ -11,7 +15,7 @@
 <div class="post">
 	<div class="post-date">{new Date(post?.date).toLocaleDateString()}</div>
 	<h1 class="title">{post?.title}</h1>
-	<div class="content">{@html post?.content.html}</div>
+	<div class="content">{@html post?.content}</div>
 </div>
 
 <style>
