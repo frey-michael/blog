@@ -3,7 +3,11 @@
 	import Header from '$lib/Header.svelte';
 	import PostGrid from '$lib/PostGrid.svelte';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <Header />
