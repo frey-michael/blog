@@ -48,4 +48,10 @@
 		hyphens: auto;
 		margin: min(max(20px, 3%), 40px);
 	}
+
+	:global(img) {
+		display: block;
+  		margin: min(max(20px, 3%), 40px) auto;
+		max-width: 90%;
+	}
 </style>
