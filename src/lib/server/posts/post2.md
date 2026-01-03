@@ -1,7 +1,7 @@
 ---
 id: '28a378a9-dcab-41f1-9325-e4a464552fd2'
 date: 2024-12-16
-title: 'The power of simplification'
+title: 'The Power Of Simplification'
 summary: 'When implementing solutions to overwhelming problems, the resulting complexity can often lead to bugs, misunderstandings, and hard-to-maintain code. In such situations, it is crucial to simplify issues as much as possible. Requirements can be questioned, dependencies restructured, and sometimes, simply a change of perspective might help.'
 ---
 

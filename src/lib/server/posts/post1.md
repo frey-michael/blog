@@ -1,7 +1,7 @@
 ---
 id: 'c1848486-fa03-4ef3-8510-2aecdf1d1d53'
 date: 2024-11-28
-title: 'Memory Dump goes live!'
+title: 'Memory Dump Goes Live!'
 summary: 'Welcome to my new tech blog.'
 ---
 

@@ -1,7 +1,7 @@
 ---
 id: 'ac45bb5a-d302-4582-85e6-cb7d3ad96dcc'
 date: 2024-12-19
-title: 'The pitfalls of abstract classes'
+title: 'The Pitfalls Of Abstract Classes'
 summary: 'Yes, yet another blog post about the Liskov Substitution Principle. This time, however, we will focus on why this violation still occurs fairly often even though it seems simple enough to avoid it.'
 ---
 
