@@ -29,4 +29,66 @@ INSERT IMAGE HERE
 
 A pretty neat way to maximize or minimize a target with certain constraints is Linear Programming (LP). As stated in the name, the only requirement to use this approach is that both the target and the constraints can be expressed as linear relationships. But let us make it more accessible with a small example.
 
-Assume you are the head of a manufacturing plant. Your plant produces both balls and sticks for sports. Both of these articles use up a certain amount of your resources (measured in money) and require time of your employees to actually produce them (measured in hours). Assume a ball requires 3 hours time and 8$ worth of materials, while a stick can be made within hour from 5$ worth of resources. You have 60 hours and a budget of 250$ for this week's production. What should you have produced in which quantities?
+Assume you are the head of a manufacturing plant. Your plant produces both balls and sticks for sports. Both of these articles use up a certain amount of your resources (measured in money) and require time of your employees to actually produce them (measured in hours). Assume a ball requires 3 hours time and 8$ worth of materials, while a stick can be made within hour from 5$ worth of resources. You have 60 hours and a budget of 250$ for this week's production. You can sell balls for 20$ a piece; sticks can be sold for 10. Which items should be produced in which quantities to optimize your earnings?
+
+This example problem can be expressed with linear inequalities as follows.
+
+$$
+\begin{alignat*}{3}
+\max \quad 20x &+ 10 y \\
+\text{subject to} \quad 3x &+ 1y \quad &\leq \quad &60 \\
+8x &+ 5y &\leq \quad &250 \\
+x &&\geq \quad &0\\
+y &&\geq \quad &0 \\
+\end{alignat*}
+$$
+
+Since this problem only uses two variables (the number of balls and sticks), we can also display the system and its possible solutions in a Cartesian graph. The solution will be found in one of the corner points and can be computed to gain a profit of exactly 528.57$. Unfortunately, standard algorithms assume variables to be a floating point number, which translates badly to units of balls and sticks. But we will not dive into this issue for the time being.
+
+INSERT IMAGE OF GRAPH
+
+In the next section we will now apply this approach to find bronze products that optimize downstream dependencies. You can find a Jupyter Notebook actually solving this example problem in [my repository](https://github.com/frey-michael/lp_for_data_products).
+
+## Modelling the Data Product Dependency Problem
+
+Getting back to our original question, we now need to formalize constraints and an optimization goal that express the need for efficient dependencies from gold products to bronze products. The biggest challenge might be defining variables that make meaningful statements possible in the first place. For this purpose we will use binary variables, which can only have two different values - 0 or 1. Such variables are used to model decisions essentially saying that whatever statement the variable models is true or false.
+
+More precisely, we will use two types of variables: $gb_{i,j}$ is 1 if and only if gold product $i$ uses bronze product $j$, $bt_{k,l}$ is 1 if and only if bronze product $k$ contains source table $l$. Notice that we will have many more variables as in our example problem. Assuming there are 10 source tables, 10 bronze data products and 5 gold data products. We will have a hundred variables describing which source table is in which bronze product ($bt_{k,l}$) and 50 variables for dependencies of gold products to bronze products ($gb_{i,j}$). As an example: $bt_{1,5} = 1$ means that bronze data product 1 contains source table 5. 
+
+You are probably wondering now what source table 5 might be. Of course, source tables usually have more descriptive names. However, for the sake of shorter variable names we ennumerate them. Since we know already all of our source tables and gold data products we can easily assign each one a number. This operation is a bit more involved when it comes to bronze product. Remember that we want to define nice and tidy bronze products in the first place, so how should we ennumerate them? The simple solution is to just guess. If we find 20 bronze products a reasonable number, we can define the variables accordingly and let the computation run. If we are not satisfied with the result, we can still start a second run with more or less bronze products.
+
+After all of these preparations, we are now finally able to set up the linear system.
+
+$$
+\begin{alignat*}{2}
+\min &\sum_{ijk} t_k \cdot gb_{ij}\cdot bt_{jk} \quad \\
+
+\text{subject to}  \quad \forall_j \ &\sum_ibt_{ij} &= 1 \\
+\forall_i \  &\sum_jbt_{ij} &\leq 5 \\
+\forall_{\text{i,k where gold i requires table k}} \  &\sum_jgb_{ij}\cdot bt_{jk} &\geq 1 \\
+
+\end{alignat*}
+
+$$
+
+The linear system consists of a minimization goal and three constraints. The goal computes all tables that are being used by dependencies and multiplies them with a constant $t_k$ that indicates the size of source table $k$. This value could either be the number of rows or its physical size in MB and works as a penalty for your solution that you want to keep as low as possible.
+The first constraint makes sure, that every source table is part of exactly one bronze product while the second constraint makes sure to have no more than five source tables per bronze product. 
+The last constraint is the most essential one - it guarantees that all required dependencies from gold products to source tables are satisfied within configuration found.
+
+## Computing Solutions
+
+Especially when the linear system gets large and we use special types of variables (such as binary or integer ones), we probably do not want to solve it ourselves. Luckily there countless numbers of open-source and proprietary solvers available. As a matter of fact, there are so many solvers that integrating a specific one to solve your problem is actually the wrong choice. Instead there are intermediaries such as [pulp](https://github.com/coin-or/pulp). They use an adapter pattern and make it possible for you to exchange the underlying solver for your problem on the go.
+In the problem above I noticed quickly that I might not find a perfect solution in reasonable time. At this point, I was quite happy that I was able to switch to a solver that also records intermediate, non-optimal solutions with barely any effort at all.
+
+If you are eager to test is for yourself, you can find Jupyter Notebooks for both of the problems discussed in [my repository](https://github.com/frey-michael/lp_for_data_products).
+
+
+## Takeaway
+
+We managed to optimize our dependencies by using linear programming. However, this tale is only just starting. The model we came up with so far is simple at best and there is still much potential for even more efficient data products! Here are just a few examples of what other aspects we could factor in to optimally group data into products:
+- Data sensitivity classification
+- Business domains
+- Source Systems
+
+Furthermore, there are many more applications for this kind of approach outside of data dependency issues and I strongly encourage you to try it the next time you need to optimize something.
+
