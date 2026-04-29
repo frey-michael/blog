@@ -1,8 +1,8 @@
 ---
 id: '207451af-c484-4f2f-bb7c-e702cea2f3be'
-date: 2026-04-28
-title: 'tbd'
-summary: 'tbd'
+date: 2026-04-29
+title: 'Optimizing Data Product Dependencies with Linear Programming'
+summary: 'In the setting of Data Mesh as a Service and Managed Data Products, modularity and efficiency are key success factors. Different customers have different analytic needs for which they expect tailor-made solutions. Providing such products that are nonetheless generic in their nature poses an interesting challenge with an even more interesting solution from the realm of operations research.'
 ---
 
 In the introductory blog post about Data Mesh as a Service, we discovered one particular challenge to optimize upstream dependencies. This time, we want to take a closer look at how to tackle this issue. But first let us revisit the problem in more detail.
@@ -11,25 +11,27 @@ In the introductory blog post about Data Mesh as a Service, we discovered one pa
 
 In the realm of data products, there are more often than not layers of them. In the well-known [medallion architecture](https://www.databricks.com/blog/what-is-medallion-architecture) for instance, you will start out with raw data in the Bronze layer, clean and validate it in Silver and finally provide consumption-ready reports in Gold. This in turn means that any data product in Gold will have one or more upstream dependencies to data products in Silver which again are dependent on data products in Bronze.
 
-INSERT IMAGE AND DESCRIBE IT.
+The image below shows a simple example of three layers of data products; arrows show data flow. Assuming these three layers to be bronze, silver and gold from left to right, we see two gold products. One of them has a single direct dependency to a silver product, which in turn depends on both bronze products. The other gold product, on the other hand has two direct dependencies on both silver products and also depends indirectly on both bronze products.
 
-While there is no way around such dependencies, we want to reduce coupling of data products and make them as coherent as possible. In other words, a data product should serve a single purpose but serve it well. This way, any dependency to a coherent data product will be well justified and make use of it as a whole. As a counterexample, assume that you create a single data product with all of your raw data in it. Now every single data product in Silver will have a dependency to your one and only Bronze data product. On the consumer side, this means you have to deal with a lot of unneccessary mental load. Furthermore, any change of your single upstream dependency might affect you. Even though, you only use a fraction of the data product, you will need to painstakingly check with every change, whether the part relevant to you was involved in the update.
+![Dependencies in Data Products](/img/post6/data_products_simple.png)
 
-Recall that we are working on so-called Managed Data Products, that are used by different companies on their respective platform. In this case, having misaligned dependencies becomes suddenly much more expensive - quite literally. Not only do different customers have to deal with the already mentioned disadvantages of bloated products, they additionally will also need to load and compute data they do not really need, simply because it "came with the package".
+While there is no way around such dependencies, we want to reduce coupling of data products and make them as coherent as possible. In other words, a data product should serve a single purpose but serve it well. This way, any dependency to a coherent data product will be well justified and make use of it as a whole. As a counterexample, assume that you create a single data product with all of your raw data in it. Now every single data product in Silver will have a dependency to your one and only Bronze data product. On the consumer side, this means you have to deal with a lot of unnecessary mental load. Furthermore, any change of your single upstream dependency might affect you. Even though, you only use a fraction of the data product, you will need to painstakingly check with every change, whether the part relevant to you was involved in the update.
+
+Recall that we are working on so-called Managed Data Products that are used by different companies on their respective platform. In this case, having misaligned dependencies becomes suddenly much more expensive - quite literally. Not only do different customers have to deal with the already mentioned disadvantages of bloated products, they additionally will also need to load and compute data they do not really need, simply because it "came with the package".
 
 ## Problem Setting
 
-When we started out creating managed data products, we had two things ready: working data marts from the existing data warehouses and an extensive analysis, which tables from the source database are being used in which data marts. Our initial plan was pretty simple - put every data mart into a separate gold data product and group source tables into sensibles bronze products to optimize dependencies. Notice that silver is missing in this picture, but making sure that raw source tables are already in optimized packages will help us in any case.
+When we started out creating managed data products, we had two things ready: working data marts from the existing data warehouses and an extensive analysis, which tables from the source database are being used in which data marts. Our initial plan was pretty simple - put every data mart into a separate gold data product and group source tables into sensible bronze products to optimize dependencies. Notice that silver is missing in this picture, but making sure that raw source tables are already in optimized packages will help us in any case.
 
-The picture below shows an example we are trying to avoid. There are three gold product with dependencies - displayed as black arrows - to the bronze products. Each bronze product is essentially a collection of source tables. While the gold product in the middle depends on two different bronze products, it actually only uses one table of each. Thus, in the worst case, the gold product will require a customer to load seven tables while only using two of them.
+The picture below shows an example we are trying to avoid. There are three gold product with dependencies - displayed as the black arrows - to the bronze products. Each bronze product is essentially a collection of source tables. While the gold product in the middle depends on two different bronze products, it actually only uses one table of each. Thus, in the worst case, the gold product will require a customer to load seven tables while only using two of them.
 
-INSERT IMAGE HERE
+![Inefficient Dependencies](/img/post6/negative_example_deps.png)
 
 ## Linear Programming to the Rescue!
 
 A pretty neat way to maximize or minimize a target with certain constraints is Linear Programming (LP). As stated in the name, the only requirement to use this approach is that both the target and the constraints can be expressed as linear relationships. But let us make it more accessible with a small example.
 
-Assume you are the head of a manufacturing plant. Your plant produces both balls and sticks for sports. Both of these articles use up a certain amount of your resources (measured in money) and require time of your employees to actually produce them (measured in hours). Assume a ball requires 3 hours time and 8$ worth of materials, while a stick can be made within hour from 5$ worth of resources. You have 60 hours and a budget of 250$ for this week's production. You can sell balls for 20$ a piece; sticks can be sold for 10. Which items should be produced in which quantities to optimize your earnings?
+Assume you are the head of a manufacturing plant. Your plant produces both balls and sticks for sports. Both of these articles use up a certain amount of your resources (measured in money) and require time of your employees to actually produce them (measured in hours). Assume a ball requires 3 hours time and 8$ worth of materials, while a stick can be made within an hour from 5$ worth of resources. You have 60 hours and a budget of 250$ for this week's production. You can sell balls for 20$ a piece; sticks can be sold for 10. Which items should be produced in which quantities to optimize your earnings?
 
 This example problem can be expressed with linear inequalities as follows.
 
@@ -45,9 +47,9 @@ $$
 
 Since this problem only uses two variables (the number of balls and sticks), we can also display the system and its possible solutions in a Cartesian graph. The solution will be found in one of the corner points and can be computed to gain a profit of exactly 528.57$. Unfortunately, standard algorithms assume variables to be a floating point number, which translates badly to units of balls and sticks. But we will not dive into this issue for the time being.
 
-INSERT IMAGE OF GRAPH
+![Graph of Example Problem](/img/post6/example_problem_graph.png)
 
-In the next section we will now apply this approach to find bronze products that optimize downstream dependencies. You can find a Jupyter Notebook actually solving this example problem in [my repository](https://github.com/frey-michael/lp_for_data_products).
+In the next section we will now apply this approach to find bronze products that optimize downstream dependencies.
 
 ## Modelling the Data Product Dependency Problem
 
@@ -55,7 +57,7 @@ Getting back to our original question, we now need to formalize constraints and 
 
 More precisely, we will use two types of variables: $gb_{i,j}$ is 1 if and only if gold product $i$ uses bronze product $j$, $bt_{k,l}$ is 1 if and only if bronze product $k$ contains source table $l$. Notice that we will have many more variables as in our example problem. Assuming there are 10 source tables, 10 bronze data products and 5 gold data products. We will have a hundred variables describing which source table is in which bronze product ($bt_{k,l}$) and 50 variables for dependencies of gold products to bronze products ($gb_{i,j}$). As an example: $bt_{1,5} = 1$ means that bronze data product 1 contains source table 5. 
 
-You are probably wondering now what source table 5 might be. Of course, source tables usually have more descriptive names. However, for the sake of shorter variable names we ennumerate them. Since we know already all of our source tables and gold data products we can easily assign each one a number. This operation is a bit more involved when it comes to bronze product. Remember that we want to define nice and tidy bronze products in the first place, so how should we ennumerate them? The simple solution is to just guess. If we find 20 bronze products a reasonable number, we can define the variables accordingly and let the computation run. If we are not satisfied with the result, we can still start a second run with more or less bronze products.
+You are probably wondering now what source table 5 might be. Of course, source tables usually have more descriptive names. However, for the sake of shorter variable names we enumerate them. Since we know already all of our source tables and gold data products we can easily assign each one a number. This operation is a bit more involved when it comes to bronze product. Remember that we want to define nice and tidy bronze products in the first place, so how should we enumerate them? The simple solution is to just guess. If we find 20 bronze products a reasonable number, we can define the variables accordingly and let the computation run. If we are not satisfied with the result, we can still start a second run with more or less bronze products.
 
 After all of these preparations, we are now finally able to set up the linear system.
 
@@ -77,10 +79,10 @@ The last constraint is the most essential one - it guarantees that all required 
 
 ## Computing Solutions
 
-Especially when the linear system gets large and we use special types of variables (such as binary or integer ones), we probably do not want to solve it ourselves. Luckily there countless numbers of open-source and proprietary solvers available. As a matter of fact, there are so many solvers that integrating a specific one to solve your problem is actually the wrong choice. Instead there are intermediaries such as [pulp](https://github.com/coin-or/pulp). They use an adapter pattern and make it possible for you to exchange the underlying solver for your problem on the go.
+Especially when the linear system gets large and we use special types of variables (such as binary or integer ones), we probably do not want to solve it ourselves. Luckily, there are countless numbers of open-source and proprietary solvers available. As a matter of fact, there are so many solvers that integrating a specific one to solve your problem is actually the wrong choice. Instead there are intermediaries such as [pulp](https://github.com/coin-or/pulp). They use an adapter pattern and make it possible for you to exchange the underlying solver for your problem on the go.
 In the problem above I noticed quickly that I might not find a perfect solution in reasonable time. At this point, I was quite happy that I was able to switch to a solver that also records intermediate, non-optimal solutions with barely any effort at all.
 
-If you are eager to test is for yourself, you can find Jupyter Notebooks for both of the problems discussed in [my repository](https://github.com/frey-michael/lp_for_data_products).
+If you are eager to test it for yourself, you can find Jupyter Notebooks for both of the problems discussed in [my repository](https://github.com/frey-michael/lp_for_data_products).
 
 
 ## Takeaway
