@@ -6,8 +6,9 @@ import * as post3 from './post3.md';
 import * as post4 from './post4.md';
 import * as post5 from './post5.md';
 import * as post6 from './post6.md';
+import * as post7 from './post7.md';
 
-const allPostFiles = [post1, post2, post3, post4, post5, post6]
+const allPostFiles = [post1, post2, post3, post4, post5, post6, post7]
 
 const allPosts =
   allPostFiles.map(async post => {
