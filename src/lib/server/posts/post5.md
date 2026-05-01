@@ -5,6 +5,8 @@ title: 'Data Mesh as a Service'
 summary: 'This introductory post explores the approach and challenges of serving data and analytics with so-called managed data products.'
 ---
 
+*This is part 1 of my series on managed data products.*
+
 In May of 2025, I was asked to join a seemingly innocent-looking project. We were tasked with modernizing a long-running data warehouse setup and ensuring that our new solution would run on cloud resources instead of on-prem servers.
 
 This quest in itself would not be special in any aspect, and I am sure there are hundreds of similar projects ongoing at this very moment. However, the client is not using this data warehouse themselves, and it is, in fact, not only one data warehouse. Instead, this client is actually offering data analytics to various customers within the Swiss health insurance sector. Therefore, the task was not merely to migrate an existing data warehouse to the cloud, but instead to use modern technologies and paradigms to offer a more flexible and resilient service to the client's customers.

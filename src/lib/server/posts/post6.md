@@ -5,6 +5,8 @@ title: 'Optimizing Data Product Dependencies with Linear Programming'
 summary: 'In the setting of Data Mesh as a Service and Managed Data Products, modularity and efficiency are key success factors. Different customers have different analytic needs for which they expect tailor-made solutions. Providing such products that are nonetheless generic in their nature poses an interesting challenge with an even more interesting solution from the realm of operations research.'
 ---
 
+*This is part 2 of my series on managed data products. Please find an introduction and an overview of the concept in this [blog post](https://michael-frey.ch/posts/1f2d9090-7ec6-4eaa-a4cb-ea57fd11c0d5)*
+
 In the introductory blog post about Data Mesh as a Service, we discovered one particular challenge to optimize upstream dependencies. This time, we want to take a closer look at how to tackle this issue. But first let us revisit the problem in more detail.
 
 ## What are upstream dependencies and why should we bother?
@@ -73,7 +75,7 @@ $$
 
 $$
 
-The linear system consists of a minimization goal and three constraints. The goal computes all tables that are being used by dependencies and multiplies them with a constant $t_k$ that indicates the size of source table $k$. This value could either be the number of rows or its physical size in MB and works as a penalty for your solution that you want to keep as low as possible.
+The linear system consists of a minimization goal and three constraints. The goal computes all tables that are being used by dependencies and multiplies them with a constant $t_k$ that indicates the size of source table $k$. This value could either be the number of rows or its physical size in MB and works as a penalty for your solution that you want to keep as low as possible. Notice that the goal is strictly speaking not linear. However, there are linearization methods to fix this, which you can find in the actual implementation.
 The first constraint makes sure, that every source table is part of exactly one bronze product while the second constraint makes sure to have no more than five source tables per bronze product. 
 The last constraint is the most essential one - it guarantees that all required dependencies from gold products to source tables are satisfied within configuration found.
 
