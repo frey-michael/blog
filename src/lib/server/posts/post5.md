@@ -5,7 +5,10 @@ title: 'Data Mesh as a Service'
 summary: 'This introductory post explores the approach and challenges of serving data and analytics with so-called managed data products.'
 ---
 
-*This is part 1 of my series on managed data products.*
+*This is an introduction to my series on managed data products. You can find more details on particular topics in the list below.*
+- [*Optimizing Data Product Dependencies*](https://michael-frey.ch/posts/207451af-c484-4f2f-bb7c-e702cea2f3be)
+- [*Access Management*](https://michael-frey.ch/posts/a4312345-bc53-4272-9596-fc7a601dcf6c)
+- [*Data Products in Microsoft Fabric*](https://michael-frey.ch/posts/1b43216f-1001-48ed-a11a-7c15b8585ec5)
 
 In May of 2025, I was asked to join a seemingly innocent-looking project. We were tasked with modernizing a long-running data warehouse setup and ensuring that our new solution would run on cloud resources instead of on-prem servers.
 
