@@ -44,7 +44,7 @@ Within data products, we use lakehouses as a container of data - at least two of
 
 A simplified version of the data flow is illustrated below.
 
-IMAGE DATA FLOW THROUGH LAKEHOUSES
+![Dataflow Within a Data Product](/img/post8/dp_dataflow.png)
 
 ## Transformation and Environments
 
@@ -64,7 +64,7 @@ Internal orchestration in our case is always done with a default Data Factory Pi
 
 We have very consciously decided against any overarching orchestration across data products. Since we want to make sure, that customers can use managed data products in a modular way with their own customised data products, a central orchestration pipeline would be challenging to implement and interact with. Instead we use the choreography pattern. A data product can be set to run as soon as some or all of its upstream dependencies have finished successfully. Of course, data products can also be run manually or on a fixed schedule. The choreography pattern is a custom implementation and is not supported by Fabric. An important part of it is a uniform way to trigger data products via an API-Call, which is why we enforce such strict measures regarding the pipeline.
 
-IMAGE OF PIPELINE
+![Default Pipeline](/img/post8/dp_pipeline.png)
 
 ## Metadata
 
